@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Merowe Map</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+        crossorigin="">
+    </script>
+    <script src="map.js"></script>
+    <script src="catchment.js"></script>
+    <script src="agricultureScheme.js"></script>
+    <script src="spillway.js"></script>
+    <script src="canalPath.js"></script>
+    <script src="hafirs.js"></script>
+    <script src="reservoir.js"></script>
+    <script src="dam.js"></script>
+    <script src="catchment.js"></script>
+    <script src="damSite.js"></script>
+    <script src="streams.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-lugx-gaming.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    
+    <style>
+        /* Custom Layer Control Styling */
+        .leaflet-control-layers {
+            border: 2px solid rgba(0,0,0,0.2);
+            background-clip: padding-box;
+            border-radius: 10px;
+            background-color: #1f2122;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .leaflet-control-layers-toggle {
+            background-color: #1f2122;
+            border-radius: 8px;
+            border: 2px solid #5dade2;
+        }
+        
+        .leaflet-control-layers-expanded {
+            padding: 10px;
+            background-color: #1f2122;
+            color: white;
+        }
+        
+        .leaflet-control-layers label {
+            display: block;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            margin: 5px 0;
+            color: #fff;
+        }
+        
+        .leaflet-control-layers-separator {
+            border-top: 1px solid #5dade2;
+            margin: 5px 0;
+        }
+        
+        .leaflet-control-layers-base label span, 
+        .leaflet-control-layers-overlays label span {
+            margin-left: 5px;
+        }
+        
+        /* Style the radio buttons and checkboxes */
+        .leaflet-control-layers input[type="radio"],
+        .leaflet-control-layers input[type="checkbox"] {
+            accent-color: #5dade2;
+        }
+        
+        /* Hover effects */
+        .leaflet-control-layers-toggle:hover {
+            background-color: #27292a;
+        }
+        
+        .leaflet-control-layers label:hover {
+            color: #5dade2;
+        }
+        
+        /* Layer group headers */
+        .layer-group-header {
+            font-weight: 600;
+            color: #5dade2 !important;
+            margin-top: 10px !important;
+        }
+        
+        /* Map container and info box layout */
+        .map-container {
+            display: flex;
+            width: 95%;
+            margin: 0 auto;
+            gap: 20px;
+        }
+        
+        #map {
+            width: 100%;
+            height: 650px;
+            border-radius: 25px;
+            padding: 5px;
+        }
+    </style>
+       
+</head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo1.png" alt="" style="width: 158px;">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li><a href="index.html" class="nav-link a">Home Page</a></li>
+                      <li><a href="merowe-map.html" class="nav-link b">Merowe Maps</a></li>
+                      <li><a href="contact.html" class="nav-link d">Contact Us</a></li>
+                      <li><a href="data.html" class="nav-link f">Data</a></li>
+                      <li><a href="results.html" class="nav-link g">Results</a></li>
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner" style="height: 20px; padding: 110px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="caption header-text">
+            <h2 style="">Merowe Map</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+  
+  <script>
+    // Initialize the map centered on Merowe
+    var map = L.map('map').setView([18.467295, 31.816457], 8);
+    
+    // Define multiple base layers
+    var osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+    
+    var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    });
+    
+    var terrainLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+      maxZoom: 17,
+      attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+    });
+    
+    // Add default base layer
+    osmLayer.addTo(map);
+    
+    // Create empty layer groups for all thematic layers
+    // Terrain Analysis Layers
+    var elevationLayer = L.layerGroup();
+    var slopeLayer = L.layerGroup();
+    var aspectLayer = L.layerGroup();
+    var catchmentLayer = L.layerGroup();
+    
+    // Soil Layers
+    var soilGroupLayer = L.layerGroup();
+    var soilTextureLayer = L.layerGroup();
+    
+    // Land Use/Cover
+    var lulcLayer = L.layerGroup();
+    
+    // Water Resources
+    var groundwaterLayer = L.layerGroup();
+    var damReservoirLayer = L.layerGroup();
+    
+    // Vegetation/Climate
+    var ndviLayer = L.layerGroup();
+    var rainfallLayer = L.layerGroup();
+    var temperatureLayer = L.layerGroup();
+    
+    // Infrastructure
+    var roadsLayer = L.layerGroup();
+    
+    // Remote Sensing
+    var finalLayer = L.geoJson();
+    // Existing layers
+    var meroweLayer = L.geoJson(merowejson);
+    // Water Harvesting
+    var streamLayer = L.geoJson(streamsjson);
+    var damSiteLayer = L.geoJson(damSitejson);
+    var catchmentLayer = L.geoJson(catchmentjson);
+    var damLayer = L.geoJson(damjson);
+    var spillWayLayer = L.geoJson(spillwayjson);
+    var damReservoirLayer = L.geoJson(reservoirjson);
+    var irrigationLayer = L.geoJson(canalPathjson);
+    var agricultureLayer = L.geoJson(agricultureScheme);
+    var hafirsLayer = L.geoJson(hafirsjson);
+    var damFinalLayer = L.geoJson();
+    var markersLayer = L.layerGroup();
+
+    var blueIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+    
+    
+    // Define base layers
+    var baseLayers = {
+      "OpenStreetMap": osmLayer,
+      "Satellite": satelliteLayer,
+      "Terrain": terrainLayer
+    };
+    
+    // Define overlay layers organized by category
+    var overlays = {
+        "Merowe Boundary": meroweLayer,
+        "Digital Elevation Model": elevationLayer,
+        "Slope": slopeLayer,
+        "Aspect": aspectLayer,
+        "NDVI": ndviLayer,
+        "LULC": lulcLayer,
+        "Precipitation": rainfallLayer,
+        "Soil Texture": soilTextureLayer,
+        "Temperature": temperatureLayer,
+        "Great Soil Group": soilGroupLayer,
+        "Soil Texture": soilTextureLayer,
+        "Ground Water": groundwaterLayer,
+        "Distance to Roads": roadsLayer,
+        "The Land Suitability Map": finalLayer,
+
+        "Stream": streamLayer,
+        "Catchment":catchmentLayer,
+        "Dam Site":damSiteLayer,
+        "Dam Embankment":damLayer,
+        "Spillway":spillWayLayer,
+        "Dam Reservoir": damReservoirLayer,
+        "Irrigation Canal":irrigationLayer,
+        "Agriculture Scheme":agricultureLayer,
+        "Hafirs":hafirsLayer,
+        "Dam Final Map":damFinalLayer,
+    };
+    
+    // Add layer control to the map
+    var layerControl = L.control.layers(baseLayers, overlays, {
+      position: 'topright',
+      collapsed: true,
+      autoZIndex: true
+    }).addTo(map);
+    
+    // Add scale control
+    L.control.scale({
+        position: 'bottomleft',
+        maxWidth: 200,
+        metric: true,
+        imperial: false,
+        updateWhenIdle: true
+    }).addTo(map);
+    
+  </script>
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Copyright © Merowe Graduation Project. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="" target="_blank">Design: Almujtaba Shawgi</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/counter.js"></script>
+  <script src="assets/js/custom.js"></script>
+  
+</body>
+</html>
